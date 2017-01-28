@@ -1,6 +1,8 @@
 package com.nexthoughts.tracker.services;
 
 import com.nexthoughts.tracker.classes.Enums.Enums;
+import com.nexthoughts.tracker.classes.Enums.Enums;
+import com.nexthoughts.tracker.classes.MailCommand;
 import com.nexthoughts.tracker.classes.UserCommand;
 import com.nexthoughts.tracker.model.Issue;
 import com.nexthoughts.tracker.model.Project;
@@ -35,6 +37,9 @@ public class UserService {
     private RoleService roleService;
 
     @Autowired
+    private SendMailService sendMailService;
+
+    @Autowired
     public UserService(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -56,6 +61,10 @@ public class UserService {
         user.setPassword(encoderService.encode(userCommand.getPassword()));
         getSession().save(user);
         getSession().close();
+
+        MailCommand mailCommand = new MailCommand(user.getEmail(), Enums.MailType.USER_REGISTRATION, user.getUuid());
+        mailCommand.setMailContentAndSubject();
+        sendMailService.send(mailCommand);
         return user.getId();
     }
 
@@ -67,6 +76,21 @@ public class UserService {
     public User getUserbyUsername(String username) {
         return (User) getSession().createCriteria(User.class)
                 .add(Restrictions.eq("username", username)).uniqueResult();
+
+    }
+
+
+    public User getUserByName(String username) {
+        Criteria criteria = getSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("username", username));
+        List<User> users = criteria.list();
+        return users.get(0);
+
+    }
+
+    public User getUserbyUuid(String uuid) {
+        return (User) getSession().createCriteria(User.class)
+                .add(Restrictions.eq("uuid", uuid)).uniqueResult();
 
     }
 

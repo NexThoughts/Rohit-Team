@@ -28,7 +28,7 @@ public class WelcomeController {
         model.setViewName("index");
         model.addObject("title", welcomeService.getTitle());
         model.addObject("message", welcomeService.getMessage());
-        sendMailService.send();
+//        sendMailService.send();
         return model;
     }
 }

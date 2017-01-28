@@ -2,6 +2,7 @@ package com.nexthoughts.tracker.web.controller;
 
 import com.nexthoughts.tracker.classes.IssueCommand;
 import com.nexthoughts.tracker.classes.ProjectCommand;
+import com.nexthoughts.tracker.model.Issue;
 import com.nexthoughts.tracker.model.Project;
 import com.nexthoughts.tracker.model.User;
 import com.nexthoughts.tracker.services.IssueService;
@@ -29,6 +30,9 @@ public class ProjectController {
     private ProjectService projectService;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private IssueService issueService;
 
     @Autowired
     ProjectController(ProjectService projectService) {
@@ -63,6 +67,9 @@ public class ProjectController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("project/editProject");
         modelAndView.addObject("project", project);
+        List<IssueCommand> issueCommands = issueService.issueList(project);
+        modelAndView.addObject("issueCommands", issueCommands);
+
         return modelAndView;
     }
 
