@@ -47,7 +47,7 @@
 
                     <fieldset>
                         <label class="text-left control-label" for="password">Password</label>
-                        <input class="pull-right form-control input-md" name="password" id="password"
+                        <input type="password" class="pull-right form-control input-md" name="password" id="password"
                                placeholder="password"/>
                         <errors name="password" class="error"/>
                         <br>
@@ -56,15 +56,13 @@
                     <fieldset>
                         <br>
                         <div class="row">
-                            <div class="col-lg-6 col-lg-offset-3">
-                                <div class="pull-left">
+                            <div class="col-lg-6">
                                     <input type="submit" value="Create" class="btn btn-success ">
                                 </div>
-                                <div class="pull-right">
+                                <div class="col-lg-6">
                                     &nbsp;<a class="btn btn-info" href="<s:url value="/login"/>">Back</a>
                                 </div>
                             </div>
-                        </div>
                     </fieldset>
                 </div>
             </form>
