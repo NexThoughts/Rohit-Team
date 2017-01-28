@@ -25,9 +25,6 @@ public class User {
     private Boolean credentialsNonExpired = true;
     private Boolean enabled = true;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    private Team team;*/
-
     public Boolean getAccountNonExpired() {
         return accountNonExpired;
     }
@@ -62,6 +59,8 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Role> roles;
+
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "createdBy")
     private Set<Issue> issues;
@@ -131,12 +130,4 @@ public class User {
     public void setIssues(Set<Issue> issues) {
         this.issues = issues;
     }
-
-    /*public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }*/
 }
