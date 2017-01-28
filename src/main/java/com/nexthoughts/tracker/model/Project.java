@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-
+@Table(name = "project")
 public class Project {
 
     @Id
@@ -15,12 +15,13 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
-    String name;
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    User createdBy;
-    Date dateCreated = new Date();
+    private User createdBy;
+
+    private Date dateCreated = new Date();
+    private String uuid = UUID.randomUUID().toString();
 
     public String getUuid() {
         return uuid;
@@ -62,16 +63,16 @@ public class Project {
         this.dateCreated = dateCreated;
     }
 
-    String uuid = UUID.randomUUID().toString();
-
     public Project() {
 
     }
+
     public Project(String name, User createdBy, String uuid) {
         this.name = name;
         this.createdBy = createdBy;
         this.uuid = uuid;
     }
+
     public Project(ProjectCommand projectCommand) {
         this.name = projectCommand.getName();
         this.createdBy = projectCommand.getCreatedBy();
