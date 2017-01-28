@@ -68,6 +68,17 @@ public class UserService {
         return user.getId();
     }
 
+    public Long enableAccount(String uuid) {
+
+        Session session = getSession();
+        User user = getUserbyUuid(uuid);
+        user.setEnabled(true);
+        session.save(user);
+        session.close();
+
+        return user.getId();
+    }
+
 
     public User read(Long id) {
         return (User) getSession().get(User.class, id);
@@ -115,19 +126,19 @@ public class UserService {
         return users.get(0);
     }
 
-    public List<Project> getProjects(){
+    public List<Project> getProjects() {
         Criteria criteria = getSession().createCriteria(Project.class);
         criteria.add(Restrictions.eq("createdBy", currentUser()));
         criteria.setMaxResults(3);
-        List<Project> projects= criteria.list();
+        List<Project> projects = criteria.list();
         return projects;
     }
 
-    public List<Issue> getIssues(){
+    public List<Issue> getIssues() {
         Criteria criteria = getSession().createCriteria(Issue.class);
         criteria.add(Restrictions.eq("createdBy", currentUser()));
         criteria.setMaxResults(3);
-        List<Issue> issues= criteria.list();
+        List<Issue> issues = criteria.list();
         return issues;
     }
 }

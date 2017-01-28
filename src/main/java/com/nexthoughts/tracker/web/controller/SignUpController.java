@@ -37,8 +37,8 @@ public class SignUpController {
         ModelAndView modelAndView = new ModelAndView();
         userService.create(userCommand);
 
-        modelAndView.setViewName("user/dashboard");
-        modelAndView.addObject("welcomeMessage", "Youhave successfully Registered. Your verification is pending. Please check your inbox");
+        modelAndView.setViewName("dashboard/show");
+        modelAndView.addObject("welcomeMessage", "You have successfully Registered. Your verification is pending. Please check your inbox");
 
 
         return modelAndView;
@@ -48,10 +48,10 @@ public class SignUpController {
     public ModelAndView verification(HttpServletRequest request) {
 
         String uuid = request.getParameter("uuid");
-        User user=userService.getUserbyUuid(uuid);
+        userService.enableAccount(uuid);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/dashboard");
+        modelAndView.setViewName("dashboard/show");
 
 
         modelAndView.addObject("welcomeMessage", "You are successfully Verified and your account is activated.");
