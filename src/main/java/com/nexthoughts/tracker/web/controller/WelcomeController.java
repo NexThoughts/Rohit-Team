@@ -1,5 +1,6 @@
 package com.nexthoughts.tracker.web.controller;
 
+import com.nexthoughts.tracker.services.SendMailService;
 import com.nexthoughts.tracker.services.WelcomeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +18,8 @@ public class WelcomeController {
     @Autowired
     private WelcomeService welcomeService;
 
-
-
+    @Autowired
+    private SendMailService sendMailService;
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView index() {
@@ -27,6 +28,7 @@ public class WelcomeController {
         model.setViewName("index");
         model.addObject("title", welcomeService.getTitle());
         model.addObject("message", welcomeService.getMessage());
+        sendMailService.send();
         return model;
     }
 }
