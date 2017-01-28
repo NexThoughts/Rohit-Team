@@ -25,6 +25,9 @@ public class User {
     private Boolean credentialsNonExpired = true;
     private Boolean enabled = true;
 
+    @Column(nullable = true)
+    private int teamId;
+
     public Boolean getAccountNonExpired() {
         return accountNonExpired;
     }
@@ -129,5 +132,14 @@ public class User {
 
     public void setIssues(Set<Issue> issues) {
         this.issues = issues;
+    }
+
+
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 }
