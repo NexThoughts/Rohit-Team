@@ -3,6 +3,7 @@ package com.nexthoughts.tracker.servlet3;
 
 import com.nexthoughts.tracker.config.HibernateConfig;
 import com.nexthoughts.tracker.config.SpringRootConfig;
+import com.nexthoughts.tracker.config.SpringSecurityConfig;
 import com.nexthoughts.tracker.config.SpringWebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -15,7 +16,7 @@ public class SpringMVCDemoWebInitializer extends AbstractAnnotationConfigDispatc
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{SpringRootConfig.class, HibernateConfig.class};
+        return new Class[]{SpringRootConfig.class, HibernateConfig.class, SpringSecurityConfig.class};
     }
 
     @Override
