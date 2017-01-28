@@ -11,12 +11,13 @@
 </head>
 <body>
 <div class="container-fluid">
-  <div class="page-header" style="background-color: #66afe9;margin: 0px !important;">
+  <%--<div class="page-header" style="background-color: #66afe9;margin: 0px !important;">--%>
     <div class="row">
-      <div class="col-lg-6 col-lg-offset-3 text-center text-capitalize" style=""><h1><b>Spring MVC + Gradle
-        Demo</b></h1></div>
+     <%-- <div class="col-lg-6 col-lg-offset-3 text-center text-capitalize" style=""><h1><b>Spring MVC + Gradle
+        Demo</b></h1></div>--%>
+       <jsp:include page="../../../../resources/header.jsp"/>
     </div>
-  </div>
+  <%--</div>--%>
   <c:if test="${issueList.isEmpty()}">
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
@@ -50,6 +51,7 @@
       </div>
     </div>
   </c:if>
+    <jsp:include page="../../../../resources/footer.jsp"/>
 
 </div>
 </body>
