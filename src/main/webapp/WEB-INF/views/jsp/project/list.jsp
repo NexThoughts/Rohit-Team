@@ -15,6 +15,7 @@
         <jsp:include page="../../../../resources/header.jsp"/>
 
     </div>
+    <a class="btn btn-success" href="<s:url  value="create"/>">Create</a>
     <c:if test="${projectList.isEmpty()}">
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">

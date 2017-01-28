@@ -18,7 +18,9 @@
        <jsp:include page="../../../../resources/header.jsp"/>
     </div>
   <%--</div>--%>
-  <c:if test="${milestoneList.isEmpty()}">
+    <a class="btn btn-success" href="<s:url  value="create"/>">Create</a>
+
+    <c:if test="${milestoneList.isEmpty()}">
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
         <div class="alert alert-danger"><s:message code="no.milestones"/></div>
