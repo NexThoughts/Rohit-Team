@@ -38,6 +38,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login").permitAll().successForwardUrl("/loginHandler")
                 .and().authorizeRequests().antMatchers("/signup").permitAll()
+                .and().authorizeRequests().antMatchers("/register").permitAll()
+                .and().authorizeRequests().antMatchers("/register/create").permitAll()
                 .and().authorizeRequests().antMatchers("/resources/**").permitAll()
                 .and().logout().permitAll()
                 .and().authorizeRequests().anyRequest().authenticated()

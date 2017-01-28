@@ -22,6 +22,9 @@ public class Issue {
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Project project;
+
     public User getCreatedBy() {
         return createdBy;
     }
@@ -93,6 +96,14 @@ public class Issue {
 
     public String getUuid() {
         return uuid;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public Issue updateIssue(Issue issue, IssueCommand issueCommand) {
