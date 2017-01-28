@@ -6,6 +6,7 @@ import com.nexthoughts.tracker.classes.UserCommand;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "user")
@@ -20,6 +21,16 @@ public class User {
     private String password;
 
     private String email;
+
+    private String uuid=UUID.randomUUID().toString();
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     private Boolean accountNonExpired = true;
     private Boolean accountNonLocked = true;
