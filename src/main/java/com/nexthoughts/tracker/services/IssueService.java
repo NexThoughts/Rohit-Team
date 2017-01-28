@@ -2,6 +2,7 @@ package com.nexthoughts.tracker.services;
 
 import com.nexthoughts.tracker.classes.IssueCommand;
 import com.nexthoughts.tracker.model.Issue;
+import com.nexthoughts.tracker.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,7 @@ public class IssueService {
     public void delete(int id) {
         Session session = getSession();
         Issue issue = (Issue) getSession().get(Issue.class, id);
+        issue.setCreatedBy(null);
         session.delete(issue);
         session.flush();
         session.close();
