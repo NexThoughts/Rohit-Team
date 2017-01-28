@@ -2,14 +2,19 @@ package com.nexthoughts.tracker.services;
 
 import com.nexthoughts.tracker.classes.ProjectCommand;
 import com.nexthoughts.tracker.model.Project;
+import com.nexthoughts.tracker.model.User;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -51,7 +56,7 @@ public class ProjectService {
     }
 
     public List<ProjectCommand> list() {
-        List<Project> projectList = getSession().createCriteria(Project.class).list();
+        List<Project> projectList = userService.getProjects();
         List<ProjectCommand> projectCommandList = new ArrayList<>();
         ProjectCommand projectCommand = null;
         for (Project project : projectList) {
@@ -76,6 +81,27 @@ public class ProjectService {
         session.delete(project);
         session.flush();
         session.close();
+    }
+
+    public Set<User> users(int id) {
+        Session session = getSession();
+        Project project = (Project) session.get(Project.class, id);
+        return project.getUsers();
+    }
+
+    public void addUser(Integer projectId, Long userId) {
+        Session session = getSession();
+        Project project = (Project) getSession().get(Project.class, projectId);
+        User user = (User) getSession().get(User.class, userId);
+        if (user != null && project != null) {
+            Set<Project> projects = new HashSet<Project>();
+            projects.add(project);
+            user.getProjects().addAll(projects);
+            session.merge(user);
+            session.update(user);
+            session.flush();
+            session.close();
+        }
     }
 
 }

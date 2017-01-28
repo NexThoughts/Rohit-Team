@@ -2,9 +2,12 @@ package com.nexthoughts.tracker.web.controller;
 
 import com.nexthoughts.tracker.classes.IssueCommand;
 import com.nexthoughts.tracker.classes.ProjectCommand;
+import com.nexthoughts.tracker.model.Issue;
 import com.nexthoughts.tracker.model.Project;
+import com.nexthoughts.tracker.model.User;
 import com.nexthoughts.tracker.services.IssueService;
 import com.nexthoughts.tracker.services.ProjectService;
+import com.nexthoughts.tracker.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/project")
@@ -24,6 +28,11 @@ public class ProjectController {
     private final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
     private ProjectService projectService;
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private IssueService issueService;
 
     @Autowired
     ProjectController(ProjectService projectService) {
@@ -58,6 +67,9 @@ public class ProjectController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("project/editProject");
         modelAndView.addObject("project", project);
+        List<IssueCommand> issueCommands = issueService.issueList(project);
+        modelAndView.addObject("issueCommands", issueCommands);
+
         return modelAndView;
     }
 
@@ -90,6 +102,35 @@ public class ProjectController {
         projectService.delete(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:list");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/searchUser", method = RequestMethod.GET)
+    public ModelAndView addUserView(@RequestParam int id) {
+        Set<User> users = projectService.users(id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("project/addUser");
+        modelAndView.addObject("users", users);
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/searchUser", method = RequestMethod.POST)
+    public ModelAndView searchUser(@RequestParam int id, @RequestParam("username") String username) {
+        List<User> users = userService.searchUser(username);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("project/searchResult");
+        modelAndView.addObject("users", users);
+        modelAndView.addObject("id", id);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
+    public ModelAndView addUser(@RequestParam int id, @RequestParam("userId") String userId) {
+        projectService.addUser((Integer) id, Long.parseLong(userId));
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:searchUser");
+        modelAndView.addObject("id", id);
         return modelAndView;
     }
 }

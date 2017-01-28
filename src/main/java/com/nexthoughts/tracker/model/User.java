@@ -37,9 +37,7 @@ public class User {
     private Boolean credentialsNonExpired = true;
     private Boolean enabled = true;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "project_user", joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "project_id")})
+    @ManyToMany(mappedBy="users")
     private Set<Project> projects = new HashSet<Project>();
 
     public Boolean getAccountNonExpired() {

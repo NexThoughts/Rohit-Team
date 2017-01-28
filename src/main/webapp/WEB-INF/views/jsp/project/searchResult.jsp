@@ -11,19 +11,15 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row">
-        <jsp:include page="../../../../resources/header.jsp"/>
-
-    </div>
-    <a class="btn btn-success" href="<s:url  value="create"/>">Create</a>
-    <c:if test="${projectList.isEmpty()}">
+    <jsp:include page="../../../../resources/header.jsp"/>
+    <c:if test="${users.isEmpty()}">
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
-                <div class="alert alert-danger"><s:message code="no.projects"/></div>
+                <div class="alert alert-danger"><s:message code="no.userFound"/></div>
             </div>
         </div>
     </c:if>
-    <c:if test="${!projectList.isEmpty()}">
+    <c:if test="${!users.isEmpty()}">
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 <table class="table table-responsive">
@@ -32,17 +28,12 @@
                         <th><s:message code="issue.title"/></th>
                         <th><s:message code="issue.action"/></th>
                     </tr>
-                    <c:forEach var="project" items="${projectList}" varStatus="i">
+                    <c:forEach var="user" items="${users}" varStatus="i">
                         <tr>
                             <td>${i.index +1 }</td>
-                            <td>${project.getName()}</td>
-                            <td><a class="btn btn-success" href="<s:url value="edit?id=${project.getId()}"/>">Edit</a>
-                            </td>
-                            <td><a class="btn btn-default"
-                                   href="<s:url value="searchUser?id=${project.getId()}"/>">Add User</a>
-                            </td>
-                            <td><a class="btn btn-danger"
-                                   href="<s:url value="delete?id=${project.getId()}"/>">Delete</a>
+                            <td>${user.getUsername()}</td>
+                            <td><a class="btn btn-success"
+                                   href="<s:url value="addUser?id=${id}&userId=${user.getId()}"/>">Add User</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -51,7 +42,6 @@
             </div>
         </div>
     </c:if>
-    <jsp:include page="../../../../resources/footer.jsp"/>
 
 </div>
 </body>

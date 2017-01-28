@@ -21,6 +21,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="/project/list">Project</a></li>
                 <li><a href="/issue/list">Issues</a></li>
+                <li><a href="/milestone/list">MileStone</a></li>
+                <li><a href="/label/list">Label</a></li>
                 <%--<li><a href="#">Team</a></li>--%>
 <%--                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
