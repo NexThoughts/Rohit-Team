@@ -18,6 +18,7 @@
 <body>
 <div class="container-fluid">
     <div class="row">
+        <jsp:include page="../../../../resources/header.jsp"/>
         <div class="col-lg-12">
             <h3 class="text-center">Add User</h3>
             <form method="post" class="form-horizontal">

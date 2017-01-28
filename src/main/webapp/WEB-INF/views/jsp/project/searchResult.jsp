@@ -11,12 +11,7 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="page-header" style="background-color: #66afe9;margin: 0px !important;">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3 text-center text-capitalize" style=""><h1><b>Spring MVC + Gradle
-                Demo</b></h1></div>
-        </div>
-    </div>
+    <jsp:include page="../../../../resources/header.jsp"/>
     <c:if test="${users.isEmpty()}">
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
