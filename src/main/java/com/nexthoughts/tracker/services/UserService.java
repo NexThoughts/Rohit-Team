@@ -3,10 +3,13 @@ package com.nexthoughts.tracker.services;
 import com.nexthoughts.tracker.classes.UserCommand;
 import com.nexthoughts.tracker.model.User;
 import com.nexthoughts.tracker.services.security.PasswordEncoderService;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -61,5 +64,14 @@ public class UserService {
         }
         getSession().close();
         return userCommandList;
+    }
+
+    public User currentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        Criteria criteria = getSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("username", name));
+        List<User> users = criteria.list();
+        return users.get(0);
     }
 }
