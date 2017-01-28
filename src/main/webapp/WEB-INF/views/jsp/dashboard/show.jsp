@@ -40,6 +40,8 @@
                         <tr>
                             <td>${project.name}</td>
                             <td><a href="/project/edit?id=${project.id}" class="btn btn-info">Edit</a></td>
+                            <td><a class="btn btn-default"
+                                   href="<s:url value="/project/searchUser?id=${project.getId()}"/>">Add User</a>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -71,6 +73,7 @@
                             <td>${issue.title}</td>
                             <td>${issue.description}</td>
                             <td><a href="/issue/edit?id=${issue.id}" class="btn btn-info">Edit</a></td>
+
                         </tr>
                     </c:forEach>
                     </tbody>
