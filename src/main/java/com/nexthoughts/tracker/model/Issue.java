@@ -95,7 +95,6 @@ public class Issue {
     }
 
     public Issue updateIssue(Issue issue, IssueCommand issueCommand) {
-        issue.id = issueCommand.getId();
         issue.title = issueCommand.getTitle();
         issue.description = issueCommand.getDescription();
         return issue;

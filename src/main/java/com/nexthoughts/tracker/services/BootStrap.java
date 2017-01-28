@@ -1,7 +1,7 @@
 package com.nexthoughts.tracker.services;
 
-import com.nexthoughts.tracker.classes.StudentCommand;
 import com.nexthoughts.tracker.classes.UserCommand;
+import com.nexthoughts.tracker.classes.TeamCommand;
 import com.nexthoughts.tracker.model.Role;
 import com.nexthoughts.tracker.model.User;
 import org.slf4j.Logger;
@@ -22,6 +22,9 @@ public class BootStrap implements InitializingBean {
     @Autowired
     RoleService roleService;
 
+    @Autowired
+    TeamService teamService;
+
 
     private final Logger log = org.slf4j.LoggerFactory.getLogger(BootStrap.class);
 
@@ -35,6 +38,10 @@ public class BootStrap implements InitializingBean {
             createAdminUser();
             createUser();
         }
+        if (teamService.list().isEmpty()){
+            createTeam();
+        }
+
         System.out.println("...Bootstrapping completed");
     }
 
@@ -60,5 +67,16 @@ public class BootStrap implements InitializingBean {
         Role roleUser = roleService.read(roleService.create(user, savedUser));
         System.out.println("User created with ROLE_USER and username - " + savedUser.getUsername() + "  and password -  " + savedUser.getPassword());
 
+    }
+
+    public void createTeam() {
+//        Set<User> users = userService.hashSetUser();
+        for (int i = 1; i <= 4; i++) {
+            TeamCommand teamCommand = new TeamCommand();
+            teamCommand.setName("Team" + i);
+            int id = teamService.create(teamCommand);
+            System.out.println("Team created with users - " + id);
+
+        }
     }
 }
