@@ -34,6 +34,7 @@
                     </fieldset>
                     <fieldset>
                         <br>
+
                         <div class="row">
                             <div class="col-lg-6">
                                 <input type="submit" value="Update" class="btn btn-success ">
@@ -48,7 +49,40 @@
         </div>
     </div>
     <jsp:include page="../../../../resources/footer.jsp"/>
+    <span css="pull-right" style="margin-left: 80%"> <a class="btn btn-success" style="" href="/issue/create">Create
+        Issue</a></span>
+    <%--<c:if test="${issueCommands.isEmpty()}">--%>
+    <%--<div class="row">--%>
+    <%--<div class="col-lg-6 col-lg-offset-3">--%>
+    <%--<div class="alert alert-danger"><s:message code="no.issue"/></div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</c:if>--%>
+    <%--<c:if test="${!issueCommands.isEmpty()}">--%>
+    <%--<div class="row">--%>
+    <%--<div class="col-lg-6 col-lg-offset-3">--%>
+    <%--<table class="table table-responsive">--%>
+    <%--<tr>--%>
+    <%--<th><s:message code="issue.id"/></th>--%>
+    <%--<th><s:message code="issue.title"/></th>--%>
+    <%--<th><s:message code="issue.action"/></th>--%>
+    <%--</tr>--%>
+    <%--<c:forEach var="issue" items="${issueCommands}" varStatus="i">--%>
+    <%--<tr>--%>
+    <%--<td>${i.index +1 }</td>--%>
+    <%--<td>${issue.getName()}</td>--%>
+    <%--<td><a class="btn btn-success" href="<s:url value="edit?id=${issue.getId()}"/>">Edit</a>--%>
+    <%--</td>--%>
+    <%--<td><a class="btn btn-danger"--%>
+    <%--href="<s:url value="delete?id=${issue.getId()}"/>">Delete</a>--%>
+    <%--</td>--%>
+    <%--</tr>--%>
+    <%--</c:forEach>--%>
+    <%--</table>--%>
 
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</c:if>--%>
 </div>
 </body>
 </html>

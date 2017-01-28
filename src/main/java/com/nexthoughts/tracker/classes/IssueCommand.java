@@ -4,6 +4,8 @@ package com.nexthoughts.tracker.classes;
 import com.nexthoughts.tracker.model.Issue;
 import com.nexthoughts.tracker.model.User;
 
+import java.util.List;
+
 public class IssueCommand {
     private int id;
 
@@ -26,12 +28,13 @@ public class IssueCommand {
         this.title = title;
         this.description = description;
     }
+
     public IssueCommand(String title, String description) {
         this.title = title;
         this.description = description;
     }
 
-    public IssueCommand(){
+    public IssueCommand() {
 
     }
 
@@ -63,5 +66,15 @@ public class IssueCommand {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public static List<IssueCommand> geCOtList(List<Issue> issues) {
+        List<IssueCommand> issueCommands = null;
+        for (Issue issue : issues) {
+
+            issueCommands.add(new IssueCommand(issue));
+        }
+
+        return issueCommands;
     }
 }

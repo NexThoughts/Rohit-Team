@@ -2,9 +2,13 @@ package com.nexthoughts.tracker.services;
 
 import com.nexthoughts.tracker.classes.IssueCommand;
 import com.nexthoughts.tracker.model.Issue;
+import com.nexthoughts.tracker.model.Project;
 import com.nexthoughts.tracker.model.User;
+import org.aspectj.bridge.ICommand;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,5 +80,13 @@ public class IssueService {
         session.delete(issue);
         session.flush();
         session.close();
+    }
+
+    public List issueList(Project project) {
+        Criteria criteria = getSession().createCriteria(Issue.class);
+        criteria.add(Restrictions.eq("project", project));
+        List<Issue> issueList = criteria.list();
+        List<IssueCommand> issueCommandList= IssueCommand.geCOtList(issueList);
+        return issueCommandList;
     }
 }
