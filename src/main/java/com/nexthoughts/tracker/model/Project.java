@@ -4,6 +4,8 @@ import com.nexthoughts.tracker.classes.ProjectCommand;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -19,6 +21,11 @@ public class Project {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "project_user", joinColumns = {@JoinColumn(name = "project_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    private Set<User> users = new HashSet<User>();
 
     private Date dateCreated = new Date();
     private String uuid = UUID.randomUUID().toString();
@@ -81,5 +88,13 @@ public class Project {
     public Project updateProject(Project project, ProjectCommand projectCommand) {
         project.name = projectCommand.getName();
         return project;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

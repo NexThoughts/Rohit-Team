@@ -130,4 +130,11 @@ public class UserService {
         List<Issue> issues= criteria.list();
         return issues;
     }
+
+    public List<User> searchUser(String username) {
+        List<User> users = (List<User>) getSession().createCriteria(User.class)
+                .add(Restrictions.ilike("username", '%' + username + '%')).list();
+        System.out.print("-----------" + users);
+        return users;
+    }
 }
