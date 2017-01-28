@@ -1,6 +1,7 @@
 package com.nexthoughts.tracker.services;
 
 import com.nexthoughts.tracker.classes.UserCommand;
+import com.nexthoughts.tracker.model.Role;
 import com.nexthoughts.tracker.model.User;
 import com.nexthoughts.tracker.services.security.PasswordEncoderService;
 import org.hibernate.Criteria;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -26,9 +29,13 @@ public class UserService {
     private SessionFactory sessionFactory;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
     public UserService(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
 
     protected Session getSession() {
         return sessionFactory.openSession();
@@ -36,6 +43,12 @@ public class UserService {
 
 
     public long create(UserCommand userCommand) {
+
+        Role role = roleService.getUserRole();
+        Set<Role> roles = new HashSet<Role>();
+        roles.add(role);
+        userCommand.setRoles(roles);
+
         User user = new User(userCommand);
         user.setPassword(encoderService.encode(userCommand.getPassword()));
         getSession().save(user);

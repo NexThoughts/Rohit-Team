@@ -15,10 +15,15 @@ public class Issue {
 
     private String title;
     private Date dateCreated = new Date();
+    private String uuid = UUID.randomUUID().toString();
+
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Project project;
 
     public User getCreatedBy() {
         return createdBy;
@@ -30,7 +35,6 @@ public class Issue {
 
 
 
-    private String uuid = UUID.randomUUID().toString();
 
 
     public Issue() {
@@ -92,6 +96,14 @@ public class Issue {
 
     public String getUuid() {
         return uuid;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public Issue updateIssue(Issue issue, IssueCommand issueCommand) {

@@ -23,8 +23,6 @@ public class Milestone {
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 
-//    private Project project;
-
     public Milestone() {
     }
 
@@ -92,12 +90,4 @@ public class Milestone {
     public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
-
-  /*  public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }*/
 }

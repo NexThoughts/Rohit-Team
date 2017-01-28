@@ -57,7 +57,7 @@
                             <input type="submit" value="Login" class="btn btn-success ">
                         </div>
                         <div class="pull-right">
-                            &nbsp;<a class="btn btn-info" href="<s:url value="/signup"/>"><s:message
+                            &nbsp;<a class="btn btn-info" href="<s:url value="/register/create"/>"><s:message
                                 code="user.signup"/></a>
                         </div>
                     </fieldset>

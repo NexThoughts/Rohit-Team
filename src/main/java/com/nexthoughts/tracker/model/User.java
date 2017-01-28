@@ -4,6 +4,7 @@ package com.nexthoughts.tracker.model;
 import com.nexthoughts.tracker.classes.UserCommand;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     private String username;
 
@@ -24,6 +25,11 @@ public class User {
     private Boolean accountNonLocked = true;
     private Boolean credentialsNonExpired = true;
     private Boolean enabled = true;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "project_user", joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "project_id")})
+    private Set<Project> projects = new HashSet<Project>();
 
     public Boolean getAccountNonExpired() {
         return accountNonExpired;
@@ -59,7 +65,6 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Role> roles;
-
 
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "createdBy")
@@ -123,11 +128,20 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
     public Set<Issue> getIssues() {
         return issues;
     }
 
     public void setIssues(Set<Issue> issues) {
         this.issues = issues;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 }
