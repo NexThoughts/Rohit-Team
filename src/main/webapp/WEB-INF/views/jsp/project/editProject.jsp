@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Create Project</title>
+    <title>Edit Project</title>
     <link rel="stylesheet"
           type="text/css"
           href="<s:url value="/resources/bootstrap.min.css" />">
@@ -17,15 +17,13 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="page-header" style="background-color: #66afe9;margin: 0px !important;">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3 text-center text-capitalize" style=""><h1><b>Spring MVC + Gradle
-                Demo</b></h1></div>
-        </div>
+    <div class="row">
+        <jsp:include page="../../../../resources/header.jsp"/>
+
     </div>
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
-            <h3 class="text-center"><s:message code="create.studentCommand"/></h3>
+            <h3 class="text-center"><s:message code="edit.Project"/></h3>
             <sf:form method="post" cssClass="form-horizontal" commandName="project">
                 <div class="col-lg-6 col-lg-offset-3">
                     <fieldset>
@@ -37,13 +35,11 @@
                     <fieldset>
                         <br>
                         <div class="row">
-                            <div class="col-lg-6 col-lg-offset-3">
-                                <div class="pull-left">
-                                    <input type="submit" value="Update" class="btn btn-success ">
-                                </div>
-                                <div class="pull-right">
-                                    &nbsp;<a class="btn btn-info" href="<s:url value="/project/list"/>">Back</a>
-                                </div>
+                            <div class="col-lg-6">
+                                <input type="submit" value="Update" class="btn btn-success ">
+                            </div>
+                            <div class="col-lg-6">
+                                &nbsp;<a class="btn btn-info" href="<s:url value="/project/list"/>">Back</a>
                             </div>
                         </div>
                     </fieldset>
@@ -51,6 +47,8 @@
             </sf:form>
         </div>
     </div>
+    <jsp:include page="../../../../resources/footer.jsp"/>
+
 </div>
 </body>
 </html>

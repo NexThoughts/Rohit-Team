@@ -30,7 +30,7 @@ public class LoginController {
     @RequestMapping(value = "/loginHandler", method = RequestMethod.POST)
     public ModelAndView successLoginHandler() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/student/list");
+        modelAndView.setViewName("redirect:/dashboard/show");
         return modelAndView;
     }
 

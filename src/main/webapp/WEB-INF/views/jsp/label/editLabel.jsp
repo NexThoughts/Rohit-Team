@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title><s:message code="create.issue"/></title>
+  <title><s:message code="create.label"/></title>
   <link rel="stylesheet"
         type="text/css"
         href="<s:url value="/resources/bootstrap.min.css" />">
@@ -22,14 +22,14 @@
     </div>
   <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-      <h3 class="text-center"><s:message code="edit.issue"/></h3>
-      <sf:form method="post" cssClass="form-horizontal" commandName="issue">
+      <h3 class="text-center"><s:message code="create.label"/></h3>
+      <sf:form method="post" cssClass="form-horizontal" commandName="label">
         <div class="col-lg-6 col-lg-offset-3">
           <fieldset>
-            <label class="text-left control-label" for="title">Title</label>
-            <sf:input cssClass="pull-right form-control input-md" path="title"
-                      placeholder="Enter Title"/>
-            <sf:errors path="title" cssClass="error"/><br>
+            <label class="text-left control-label" for="name">Name</label>
+            <sf:input cssClass="pull-right form-control input-md" path="name"
+                      placeholder="Enter Name"/>
+            <sf:errors path="name" cssClass="error"/><br>
           </fieldset>
 
           <fieldset>
@@ -47,8 +47,9 @@
                   <input type="submit" value="Update" class="btn btn-success ">
                 </div>
                 <div class="col-lg-6">
-                  &nbsp;<a class="btn btn-info" href="<s:url value="/issue/list"/>">Back</a>
+                  &nbsp;<a class="btn btn-info" href="<s:url value="/label/list"/>">Back</a>
                 </div>
+              </div>
             </div>
           </fieldset>
         </div>

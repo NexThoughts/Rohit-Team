@@ -1,8 +1,11 @@
 package com.nexthoughts.tracker.services;
 
 import com.nexthoughts.tracker.classes.Enums.Enums;
+import com.nexthoughts.tracker.classes.Enums.Enums;
 import com.nexthoughts.tracker.classes.MailCommand;
 import com.nexthoughts.tracker.classes.UserCommand;
+import com.nexthoughts.tracker.model.Issue;
+import com.nexthoughts.tracker.model.Project;
 import com.nexthoughts.tracker.model.Role;
 import com.nexthoughts.tracker.model.User;
 import com.nexthoughts.tracker.services.security.PasswordEncoderService;
@@ -110,5 +113,21 @@ public class UserService {
         criteria.add(Restrictions.eq("username", name));
         List<User> users = criteria.list();
         return users.get(0);
+    }
+
+    public List<Project> getProjects(){
+        Criteria criteria = getSession().createCriteria(Project.class);
+        criteria.add(Restrictions.eq("createdBy", currentUser()));
+        criteria.setMaxResults(3);
+        List<Project> projects= criteria.list();
+        return projects;
+    }
+
+    public List<Issue> getIssues(){
+        Criteria criteria = getSession().createCriteria(Issue.class);
+        criteria.add(Restrictions.eq("createdBy", currentUser()));
+        criteria.setMaxResults(3);
+        List<Issue> issues= criteria.list();
+        return issues;
     }
 }

@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title><s:message code="create.issue"/></title>
+  <title>Create Label</title>
   <link rel="stylesheet"
         type="text/css"
         href="<s:url value="/resources/bootstrap.min.css" />">
@@ -17,45 +17,51 @@
 </head>
 <body>
 <div class="container-fluid">
+  <%--<div class="page-header" style="background-color: #66afe9;margin: 0px !important;">--%>
     <div class="row">
+     <%-- <div class="col-lg-6 col-lg-offset-3 text-center text-capitalize" style=""><h1><b>Spring MVC + Gradle
+        Demo</b></h1></div>--%>
       <jsp:include page="../../../../resources/header.jsp"/>
     </div>
+  </div>
   <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-      <h3 class="text-center"><s:message code="edit.issue"/></h3>
-      <sf:form method="post" cssClass="form-horizontal" commandName="issue">
+      <h3 class="text-center">Create Label</h3>
+      <form method="post" class="form-horizontal">
         <div class="col-lg-6 col-lg-offset-3">
           <fieldset>
-            <label class="text-left control-label" for="title">Title</label>
-            <sf:input cssClass="pull-right form-control input-md" path="title"
-                      placeholder="Enter Title"/>
-            <sf:errors path="title" cssClass="error"/><br>
+            <label class="text-left control-label" for="name">Name</label>
+            <input class="pull-right form-control input-md" name="name" id="name"
+                   placeholder="Enter Name"/>
+            <errors name="title" class="error"/>
+            <br>
           </fieldset>
 
           <fieldset>
-            <label class="text-left control-label" for="description">Last Name</label>
-            <sf:input cssClass="pull-right form-control input-md" path="description"
-                      placeholder="Enter last Name"/>
-            <sf:errors path="description" cssClass="error"/><br>
+            <label class="text-left control-label" for="description">Description</label>
+            <input class="pull-right form-control input-md" name="description" id="description"
+                   placeholder="Enter Description"/>
+            <errors name="description" class="error"/>
+            <br>
           </fieldset>
-
 
           <fieldset>
             <br>
             <div class="row">
               <div class="col-lg-6">
-                  <input type="submit" value="Update" class="btn btn-success ">
+                  <input type="submit" value="Create" class="btn btn-success">
                 </div>
                 <div class="col-lg-6">
                   &nbsp;<a class="btn btn-info" href="<s:url value="/issue/list"/>">Back</a>
-                </div>
+              </div>
             </div>
           </fieldset>
         </div>
-      </sf:form>
+      </form>
     </div>
-  </div>
+  <%--</div>--%>
   <jsp:include page="../../../../resources/footer.jsp"/>
+
 </div>
 </body>
 </html>

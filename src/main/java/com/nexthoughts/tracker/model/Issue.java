@@ -15,6 +15,8 @@ public class Issue {
 
     private String title;
     private Date dateCreated = new Date();
+    private String uuid = UUID.randomUUID().toString();
+
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,7 +35,6 @@ public class Issue {
 
 
 
-    private String uuid = UUID.randomUUID().toString();
 
 
     public Issue() {

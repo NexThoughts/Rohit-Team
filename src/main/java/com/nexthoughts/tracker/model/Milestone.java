@@ -1,5 +1,7 @@
 package com.nexthoughts.tracker.model;
 
+import com.nexthoughts.tracker.classes.Enums.MilestoneCommand;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
@@ -89,5 +91,19 @@ public class Milestone {
 
     public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public Milestone(MilestoneCommand milestoneCommand) {
+        this.name = milestoneCommand.getName();
+        this.createdBy = milestoneCommand.getCreatedBy();
+        this.startDate = milestoneCommand.getStartDate();
+        this.endDate = milestoneCommand.getEndDate();
+    }
+
+    public Milestone updateMilestone(Milestone milestone, MilestoneCommand milestoneCommand) {
+        milestone.name = milestoneCommand.getName();
+        milestone.startDate = milestoneCommand.getStartDate();
+        milestone.endDate = milestoneCommand.getEndDate();
+        return milestone;
     }
 }
