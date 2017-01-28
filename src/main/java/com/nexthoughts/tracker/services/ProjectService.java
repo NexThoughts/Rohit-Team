@@ -51,7 +51,7 @@ public class ProjectService {
     }
 
     public List<ProjectCommand> list() {
-        List<Project> projectList = getSession().createCriteria(Project.class).list();
+        List<Project> projectList = userService.getProjects();
         List<ProjectCommand> projectCommandList = new ArrayList<>();
         ProjectCommand projectCommand = null;
         for (Project project : projectList) {

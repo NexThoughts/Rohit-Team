@@ -47,7 +47,7 @@
 
                     <fieldset>
                         <label class="text-left control-label" for="password">Password</label>
-                        <input class="pull-right form-control input-md" name="password" id="password"
+                        <input class="pull-right form-control input-md" name="password" id="password" type="password"
                                placeholder="password"/>
                         <errors name="password" class="error"/>
                         <br>
