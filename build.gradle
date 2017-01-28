@@ -21,6 +21,10 @@ dependencies {
     compile 'commons-dbcp:commons-dbcp:1.4'
     //include in compile only, exclude in the war
     providedCompile 'javax.servlet:servlet-api:2.5'
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.1.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.1.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-core', version: '4.2.1.RELEASE'
+
 }
 
 
