@@ -61,9 +61,10 @@ public class User {
     private Set<Role> roles;
 
 
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "createdBy")
     private Set<Issue> issues;
+
+
 
     public User() {
     }
@@ -123,6 +124,7 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
     public Set<Issue> getIssues() {
         return issues;
     }
