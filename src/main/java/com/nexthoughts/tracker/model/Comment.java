@@ -19,6 +19,9 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Issue issue;
+
     private Date dateCreated = new Date();
 
     public Comment() {
@@ -62,5 +65,13 @@ public class Comment {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public Issue getIssue() {
+        return issue;
+    }
+
+    public void setIssue(Issue issue) {
+        this.issue = issue;
     }
 }
