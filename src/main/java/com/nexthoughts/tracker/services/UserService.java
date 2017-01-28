@@ -101,7 +101,7 @@ public class UserService {
 
     public List<Issue> getIssues(){
         Criteria criteria = getSession().createCriteria(Issue.class);
-        criteria.add(Restrictions.in("project", getProjects()));
+        criteria.add(Restrictions.eq("createdBy", currentUser()));
         criteria.setMaxResults(3);
         List<Issue> issues= criteria.list();
         return issues;
