@@ -17,6 +17,19 @@ public class Issue {
     private Date dateCreated = new Date();
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User createdBy;
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+
+
     private String uuid = UUID.randomUUID().toString();
 
 
@@ -35,6 +48,7 @@ public class Issue {
         this.uuid = issueCommand.getTitle();
         this.title = issueCommand.getTitle();
         this.id = issueCommand.getId();
+        this.createdBy = issueCommand.getCreatedBy();
     }
 
     public void setTitle(String title) {

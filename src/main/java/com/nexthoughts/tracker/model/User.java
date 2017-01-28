@@ -25,6 +25,9 @@ public class User {
     private Boolean credentialsNonExpired = true;
     private Boolean enabled = true;
 
+    @Column(nullable = true)
+    private int teamId;
+
     public Boolean getAccountNonExpired() {
         return accountNonExpired;
     }
@@ -59,6 +62,11 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Role> roles;
+
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "createdBy")
+    private Set<Issue> issues;
 
     public User() {
     }
@@ -117,5 +125,21 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    public Set<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(Set<Issue> issues) {
+        this.issues = issues;
+    }
+
+
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 }

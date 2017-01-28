@@ -2,10 +2,13 @@ package com.nexthoughts.tracker.web.controller;
 
 import com.nexthoughts.tracker.classes.IssueCommand;
 import com.nexthoughts.tracker.model.Issue;
+import com.nexthoughts.tracker.model.User;
 import com.nexthoughts.tracker.services.IssueService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,23 +69,7 @@ public class IssueController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView saveIssue(IssueCommand issueCommand) {
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("===========issueCommand===========" + issueCommand.getTitle());
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
-        System.out.println("======================");
+
         int issueId = issueService.create(issueCommand);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:list");
