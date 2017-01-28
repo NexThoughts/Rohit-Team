@@ -1,28 +1,25 @@
 package com.nexthoughts.tracker.model;
 
-
-import com.nexthoughts.tracker.classes.TeamCommand;
-
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "team")
-public class Team {
+@Table(name = "label")
+public class Label {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User createdBy;
+
     private String uuid = UUID.randomUUID().toString();
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public Label() {
     }
 
     public int getId() {
@@ -41,13 +38,19 @@ public class Team {
         this.name = name;
     }
 
-    public Team(){
-
+    public User getCreatedBy() {
+        return createdBy;
     }
 
-    public Team(TeamCommand teamCommand){
-        this.name = teamCommand.getName();
-        this.uuid = teamCommand.getUuid();
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 }
