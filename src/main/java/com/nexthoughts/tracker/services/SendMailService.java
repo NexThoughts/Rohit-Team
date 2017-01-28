@@ -23,9 +23,9 @@ public class SendMailService {
         MimeMessageHelper mailMsg = new MimeMessageHelper(mimeMessage);
         try {
             mailMsg.setFrom("rohit@nexthoughts.com");
-            mailMsg.setTo((mailCommand.getTo().length()>0) ? mailCommand.getSubject() : "");
+            mailMsg.setTo((mailCommand.getTo().length()>0) ? mailCommand.getTo() : "");
             mailMsg.setSubject((mailCommand.getSubject().length()>0) ? mailCommand.getSubject() : "");
-            mailMsg.setText((mailCommand.getContent().length()>0) ? mailCommand.getSubject() : "");
+            mailMsg.setText((mailCommand.getContent().length()>0) ? mailCommand.getContent() : "");
             mailSender.send(mimeMessage);
         } catch (Exception e) {
             e.printStackTrace();
