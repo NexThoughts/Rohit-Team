@@ -34,10 +34,10 @@ public class LabelService {
 
     public int create(LabelCommand labelCommand) {
         labelCommand.setCreatedBy(userService.currentUser());
-        Label student = new Label(labelCommand);
-        getSession().save(student);
+        Label label = new Label(labelCommand);
+        getSession().save(label);
         getSession().close();
-        return student.getId();
+        return label.getId();
     }
 
     public int update(LabelCommand labelCommand) {
