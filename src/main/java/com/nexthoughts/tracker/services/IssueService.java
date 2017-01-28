@@ -18,6 +18,10 @@ public class IssueService {
     private SessionFactory sessionFactory;
 
     @Autowired
+    private UserService userService;
+
+
+    @Autowired
     public IssueService(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -28,6 +32,7 @@ public class IssueService {
 
 
     public int create(IssueCommand issueCommand) {
+        issueCommand.setCreatedBy(userService.currentUser());
         Issue student = new Issue(issueCommand);
         getSession().save(student);
         getSession().close();

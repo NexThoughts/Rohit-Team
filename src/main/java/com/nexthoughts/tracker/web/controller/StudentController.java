@@ -2,10 +2,14 @@ package com.nexthoughts.tracker.web.controller;
 
 import com.nexthoughts.tracker.classes.StudentCommand;
 import com.nexthoughts.tracker.model.Student;
+import com.nexthoughts.tracker.model.User;
 import com.nexthoughts.tracker.services.StudentService;
+import com.nexthoughts.tracker.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +24,11 @@ public class StudentController {
 
     private final Logger logger = LoggerFactory.getLogger(StudentController.class);
 
+    @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     StudentController(StudentService studentService) {
