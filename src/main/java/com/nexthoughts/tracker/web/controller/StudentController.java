@@ -42,7 +42,7 @@ public class StudentController {
             System.out.println(studentCommand.getId());
         }
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("student/list");
+        modelAndView.setViewName("project/list");
         modelAndView.addObject("studentList", studentList);
         return modelAndView;
     }
@@ -52,7 +52,7 @@ public class StudentController {
         logger.info("Executing GET method for /student/create");
         logger.info("==========================================");
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("student/createStudent");
+        modelAndView.setViewName("project/create");
         return modelAndView;
     }
 
@@ -62,8 +62,8 @@ public class StudentController {
         logger.info("==========================================");
         Student student = studentService.read(id);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("student/editStudent");
-        modelAndView.addObject("student", student);
+        modelAndView.setViewName("project/edit");
+//        modelAndView.addObject("student", student);
         return modelAndView;
     }
 
